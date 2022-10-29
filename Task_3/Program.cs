@@ -12,62 +12,55 @@
 int GetNumberFromConsole(string message)
 {
     Console.WriteLine(message);
-    int number = int.Parse(Console.ReadLine()??"");
+    int number = int.Parse(Console.ReadLine() ?? "");
     return number;
 }
 
-double [,] InitMatrix(int m, int n)
+double[,] InitMatrix(int m, int n)
 {
-    double [,] resultMatrix = new double [m,n];
-    Random rnd = new Random ();
+    double[,] resultMatrix = new double[m, n];
+    Random rnd = new Random();
     for (int i = 0; i < m; i++)
     {
         for (int j = 0; j < n; j++)
         {
-            resultMatrix [i,j] = rnd.Next(1,10);
+            resultMatrix[i, j] = rnd.Next(1, 10);
         }
     }
     return resultMatrix;
 }
 
-double [] GetMatrixModified (double [,] resultMatrix)
+double[] GetMatrixModified(double[,] resultMatrix)
 {
-    double [] matrixModified = new double [resultMatrix.GetLength(1)];
+    double[] matrixModified = new double[resultMatrix.GetLength(1)];
     double summ = new double();
     for (int j = 0; j < resultMatrix.GetLength(1); j++)
-    {   
-        
+    {
         summ = 0;
         for (int i = 0; i < resultMatrix.GetLength(0); i++)
         {
-            summ += resultMatrix [i,j];
-            matrixModified [j] = summ;
-            matrixModified [j] = matrixModified [j]/resultMatrix.GetLength(0);
+            summ += resultMatrix[i, j];
+            matrixModified[j] = summ;
+            matrixModified[j] = matrixModified[j] / resultMatrix.GetLength(0);
         }
     }
     return matrixModified;
 }
-/*void GetMatrixModified (int [,] initialMatrix)
-{
-    string arithmeticMean = new string();
-    for
-}*/
-
-void PrintMatrix(double [,] matrix)
+void PrintMatrix(double[,] matrix)
 {
     Console.WriteLine("\nИзначальный массив:\n");
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
         for (int j = 0; j < matrix.GetLength(1); j++)
         {
-            Console.Write($"{matrix[i,j]} ");
+            Console.Write($"{matrix[i, j]} ");
         }
         Console.WriteLine();
     }
 }
 
-void PrintMatrixModified (double[] matrixModified)
-{   
+void PrintMatrixModified(double[] matrixModified)
+{
     Console.WriteLine("\nСреднее арифметическое каждого столбца:\n");
     for (int i = 0; i < matrixModified.Length; i++)
     {
@@ -77,7 +70,7 @@ void PrintMatrixModified (double[] matrixModified)
 
 int row = GetNumberFromConsole("Введите число строк:");
 int column = GetNumberFromConsole("Введите число колонок:");
-double [,] initialMatrix = InitMatrix(row,column);
-double [] matrixModified = GetMatrixModified(initialMatrix);
+double[,] initialMatrix = InitMatrix(row, column);
+double[] matrixModified = GetMatrixModified(initialMatrix);
 PrintMatrix(initialMatrix);
 PrintMatrixModified(matrixModified);
